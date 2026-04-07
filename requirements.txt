@@ -1,0 +1,2 @@
+# Core UI Library
+PyQt6==6.10.2

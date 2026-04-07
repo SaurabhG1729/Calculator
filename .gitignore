@@ -1,0 +1,23 @@
+# Binaries
+*.dll
+*.so
+*.exe
+
+# Python 
+__pycache__/
+*.pyc
+.venv/
+.vscode/
+.idea/
+
+venv/
+
+
+
+# C Build Artifacts
+build/main.dll
+*.o
+*.obj
+
+# IDE Settings
+
