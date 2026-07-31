@@ -14,28 +14,28 @@ class CPoweredCalculator(QMainWindow):
 
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
-        self.layout = QVBoxLayout(self.central_widget)
-        self.layout.setSpacing(15)
+        self.main_layout = QVBoxLayout(self.central_widget)
+        self.main_layout.setSpacing(15)
 
         self.header = QLabel("C-POWERED CALCULATOR")
         self.header.setObjectName("HeaderLabel")
-        self.layout.addWidget(self.header)
+        self.main_layout.addWidget(self.header)
 
         self.input_box = QLineEdit()
         self.input_box.setPlaceholderText("Enter expression...")
         self.input_box.setFixedHeight(45)
         self.input_box.returnPressed.connect(self.emit_request) 
-        self.layout.addWidget(self.input_box)
+        self.main_layout.addWidget(self.input_box)
 
         self.btn = QPushButton("EVALUATE")
         self.btn.setFixedHeight(50)
         self.btn.clicked.connect(self.emit_request)
-        self.layout.addWidget(self.btn)
+        self.main_layout.addWidget(self.btn)
 
         self.result_label = QLabel("IDLE...")
         self.result_label.setObjectName("ResultLabel")
         self.result_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.layout.addWidget(self.result_label)
+        self.main_layout.addWidget(self.result_label)
 
     def apply_dark_theme(self):
         self.setStyleSheet("""
@@ -61,7 +61,10 @@ class CPoweredCalculator(QMainWindow):
         """)
 
     def emit_request(self):
-        self.request_calculation.emit(self.input_box.text())
+
+        expression = self.input_box.text()
+
+        self.request_calculation.emit(expression)
 
     def show_success(self, res_text):
         self.result_label.setText(res_text)

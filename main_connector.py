@@ -21,23 +21,27 @@ class AppController:
 
     def process_math(self, user_input):
         user_input = user_input.strip()
-        if not user_input: return
-
-        # 1. Validation
+        if not user_input:
+            return
+        
+            # 1. Validation
         if not re.match(r'^[0-9+\-*/^. ]+$', user_input):
             self.ui.show_error("INVALID INPUT")
             return
-
-        # 2. Execution
+        
+            # 2. Execution
         try:
             res = self.engine.run_calculation(user_input)
-            
+        
             if math.isnan(res):
                 self.ui.show_error("SYNTAX ERROR")
             else:
                 self.ui.show_success(f"OUT: {res:g}")
-        except:
+        
+        except Exception as e:
+            print("ENGINE ERROR:", e)
             self.ui.show_error("ENGINE CRASH")
+    
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

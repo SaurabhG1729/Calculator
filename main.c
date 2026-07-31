@@ -84,7 +84,7 @@ EXPORT double evaluate(const char* expression) {
             char cur_char = expression[i];
             Operator cur_op = get_op_info(cur_char);
 
-            while (o_top != -1) {
+            while (o_top != -1) {//This block checks the precedence of the current operator against the top of the operator stack
                 Operator top_op = get_op_info(op_stack[o_top]);
                 if (top_op.precedence > cur_op.precedence ||
                    (top_op.precedence == cur_op.precedence && !cur_op.right_assoc)) {
